@@ -19,3 +19,28 @@
 	- Thêm Reviewer là `ThienNam23` và Assignee là acc của mình
 	- Tạo Pull Request
 	
+# Project - App nghe nhạc offline - online
+
+## Giới thiệu
+App nghe nhạc có 2 phần nghe offline và online. App có các tính năng:
+
+### Nghe offline:
+- Tự động tìm kiếm các bài hát trong bộ nhớ
+- Tạo playlist riêng
+- Thay đổi ảnh bài hát, ảnh playlist
+- Thêm lời bài hát
+> Mở rộng:
+- Phát theo độ yêu thích (tính theo số lần nghe)
+- Cắt nhạc 
+- Cài đặt nhạc làm nhạc chuông
+- Đặt thời gian phát
+- More...
+
+### Nghe online:
+- Tạo playlist riêng
+- Tải nhạc xuống
+- Nghe theo album, thể loại, ca sĩ
+> Mở rộng: (một số phần mở rộng yêu cầu hệ thống quản lý tài khoản - hệ thống này nếu có thời gian mới xây dựng được)
+- Sau khi nhạc được tải xuống thì được áp dụng phần mở rộng của offline
+- Chế độ yêu thích (yêu cầu đăng nhập)
+- Chế độ bình luận (yêu cầu đăng nhập)
