@@ -44,3 +44,5 @@ App nghe nhạc có 2 phần nghe offline và online. App có các tính năng:
 - Sau khi nhạc được tải xuống thì được áp dụng phần mở rộng của offline
 - Chế độ yêu thích (yêu cầu đăng nhập)
 - Chế độ bình luận (yêu cầu đăng nhập)
+
+###
