@@ -18,7 +18,8 @@
 	- Có thể viết mô tả hoặc không
 	- Thêm Reviewer là `ThienNam23` và Assignee là acc của mình
 	- Tạo Pull Request
-	
+![image](https://user-images.githubusercontent.com/57934392/133895470-e5ba18f8-0ea5-470e-8b4f-dd82b96eb150.png)
+
 # Project - App nghe nhạc offline - online
 
 ## Giới thiệu
