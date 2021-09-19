@@ -52,15 +52,19 @@ App nghe nhạc có 2 phần nghe offline và online. App có các tính năng:
 - Vào [Draw.io](https://draw.io) đăng nhập với gmail, và cho phép [Draw.io](https://draw.io) quyền đọc ghi trên drive để mở file này lên
 
 ### Phân công công việc:
-- Nguyên + Huân làm phần offline
-- Nam + Linh làm phần online
+- Linh + Huân làm phần offline
+- Nam + Nguyên làm phần online
 ### Yêu cầu:
 - Offline:
 	- Sử dụng SQLite để ghi dữ liệu người dùng như Playlist, Song,...
-	- Huân tập trung thiết kế UI, Nguyên tập trung vận hành Backend
+	- Huân tập trung thiết kế UI, Linh tập trung vận hành Backend
 	- Ứng dụng tự đọc và hiển thị các bài hát có trong bộ nhớ điện thoại (tìm hiểu MediaStore), trong trường hợp bài hát bị người dùng xoá ở bên ngoài khi click vào sẽ báo lỗi ("Không tìm thấy file") và xoá các bản ghi kèm theo
 	- More...
 - Online:
+	- Nguyên tập trung làm UI cho nghe online, Nam làm Backend
 	- Sử dụng Exoplayer để stream nhạc trực tiếp từ server
-	- Sử dụng Facebook's Shrimmer tạo hiệu ứng load khi tải danh sách nhạc
+	- Sử dụng Facebook's Shimmer tạo hiệu ứng load khi tải danh sách nhạc
+	- Sử dụng Volley xử lý requet/response
+	- Sử dụng Glide để hiển thị ảnh
+	- Sử dụng Gson để xử lý JSON
 	- More...
