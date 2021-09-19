@@ -46,4 +46,21 @@ App nghe nhạc có 2 phần nghe offline và online. App có các tính năng:
 - Chế độ yêu thích (yêu cầu đăng nhập)
 - Chế độ bình luận (yêu cầu đăng nhập)
 
-###
+## Xây dựng app:
+### ERD và các mẫu UI:
+- Tải [file](https://drive.google.com/file/d/1Wj4lWKbS2HyE98klMUWq-Q9F-ntVWGdi/view?usp=sharing) này về, up lên drive
+- Vào [Draw.io](https://draw.io) đăng nhập với gmail, và cho phép [Draw.io](https://draw.io) quyền đọc ghi trên drive để mở file này lên
+
+### Phân công công việc:
+- Nguyên + Huân làm phần offline
+- Nam + Linh làm phần online
+### Yêu cầu:
+- Offline:
+	- Sử dụng SQLite để ghi dữ liệu người dùng như Playlist, Song,...
+	- Huân tập trung thiết kế UI, Nguyên tập trung vận hành Backend
+	- Ứng dụng tự đọc và hiển thị các bài hát có trong bộ nhớ điện thoại (tìm hiểu MediaStore), trong trường hợp bài hát bị người dùng xoá ở bên ngoài khi click vào sẽ báo lỗi ("Không tìm thấy file") và xoá các bản ghi kèm theo
+	- More...
+- Online:
+	- Sử dụng Exoplayer để stream nhạc trực tiếp từ server
+	- Sử dụng Facebook's Shrimmer tạo hiệu ứng load khi tải danh sách nhạc
+	- More...
