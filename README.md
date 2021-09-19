@@ -61,7 +61,7 @@ App nghe nhạc có 2 phần nghe offline và online. App có các tính năng:
 	- Ứng dụng tự đọc và hiển thị các bài hát có trong bộ nhớ điện thoại (tìm hiểu MediaStore), trong trường hợp bài hát bị người dùng xoá ở bên ngoài khi click vào sẽ báo lỗi ("Không tìm thấy file") và xoá các bản ghi kèm theo
 	- More...
 - Online:
-	- Nguyên tập trung làm UI cho nghe online, Nam làm Backend
+	- Nguyên tập trung làm UI cho nghe online, Nam xây dựng server + hỗ trợ mọi phần
 	- Sử dụng Exoplayer để stream nhạc trực tiếp từ server
 	- Sử dụng Facebook's Shimmer tạo hiệu ứng load khi tải danh sách nhạc
 	- Sử dụng Volley xử lý requet/response
