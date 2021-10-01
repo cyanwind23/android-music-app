@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Muzik</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Bottom Navigation title -->
+    <string name="title_private_musics">Cá nhân</string>
+    <string name="title_playlists">Danh sách phát</string>
+    <string name="title_online_musics">Khám phá</string>
+    <string name="title_albums">Album</string>
+    <string name="title_artists">Nghệ sĩ</string>
+    <string name="title_rcv_album">Album nổi bật</string>
+    <string name="title_rcv_artist">Nghệ sĩ nổi bật</string>
+    <string name="title_rcv_song">Dành cho bạn</string>
 </resources>
