@@ -3,11 +3,12 @@ package com.javateam.muzik.entity;
 import com.google.gson.annotations.SerializedName;
 import com.javateam.muzik.config.AppConfig;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 
-public class Artist {
+public class Artist implements Serializable {
     @SerializedName("id")
     private Long id;
     @SerializedName("name")
@@ -22,6 +23,10 @@ public class Artist {
     private String selfLink;
     // Relationships
     private List<Song> songs;
+
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;

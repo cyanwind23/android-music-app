@@ -1,10 +1,12 @@
 package com.javateam.muzik.entity;
 
 import com.google.gson.annotations.SerializedName;
+import com.javateam.muzik.config.AppConfig;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Song {
+public class Song implements Serializable {
     @SerializedName("id")
     private Long id;
     @SerializedName("name")
@@ -29,7 +31,7 @@ public class Song {
     }
 
     public String getImgUrl() {
-        return imgUrl;
+        return AppConfig.SERVER_URL + imgUrl;
     }
 
     public String getAuthorsName() {
@@ -45,6 +47,15 @@ public class Song {
             return "";
         }
     }
+
+    public String getSelfLink() {
+        return selfLink;
+    }
+
+    public void setArtists(List<Artist> artists) {
+        this.artists = artists;
+    }
+
     @Override
     public String toString() {
         return "Song{" +
