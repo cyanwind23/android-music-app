@@ -1,8 +1,9 @@
 package com.javateam.muzik.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Playlist {
+public class Playlist implements Serializable {
     private Long id;
     private String name;
     private String img_url;

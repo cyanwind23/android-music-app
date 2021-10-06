@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +22,8 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.gson.JsonObject;
-import com.javateam.muzik.Home;
 import com.javateam.muzik.R;
 import com.javateam.muzik.adapter.AlbumCardAdapter;
 import com.javateam.muzik.adapter.ArtistCardAdapter;
@@ -37,12 +33,15 @@ import com.javateam.muzik.config.AppConfig;
 import com.javateam.muzik.entity.Album;
 import com.javateam.muzik.entity.Artist;
 import com.javateam.muzik.entity.Song;
+import com.javateam.muzik.service.SongService;
 import com.javateam.muzik.singleton.RequestSingleton;
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -117,12 +116,12 @@ public class OnlineMusicsFragment extends Fragment {
 //        textView = (TextView) view.findViewById(R.id.tv_online_musics);
         shimmerViewContainer = (ShimmerFrameLayout) view.findViewById(R.id.shimmer_online_music);
 
-        prepareAlbumList();
+        prepareDataList();
         return view;
     }
 
 
-    private void prepareAlbumList() {
+    private void prepareDataList() {
         // For Album RCV
         recyclerViewAlbum = (RecyclerView) view.findViewById(R.id.rcv_album);
         listAlbum = new ArrayList<>();
@@ -163,15 +162,24 @@ public class OnlineMusicsFragment extends Fragment {
         getOnlineData();
     }
     private void getOnlineData() {
+
+        getAlbumData();
+        getArtistData();
+        getSongData();
+
+    }
+
+    private void getAlbumData() {
         StringRequest albumRequest = new StringRequest(Request.Method.GET, AppConfig.ALBUMS_API, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 try {
-                    listAlbum.addAll(JSONParser.parse(response, Album.class, false));
+                    listAlbum.addAll(JSONParser.parse(response, Album.class));
                 } catch (JSONException jsonException) {
                     jsonException.printStackTrace();
                 }
+
                 // refreshing recycler view
                 albumCardAdapter.notifyDataSetChanged();
 
@@ -183,17 +191,45 @@ public class OnlineMusicsFragment extends Fragment {
             }
         });
 
+        RequestSingleton.getInstance(view.getContext()).addToRequestQueue(albumRequest);
+    }
+
+    private void getArtistData() {
         StringRequest artistRequest = new StringRequest(Request.Method.GET, AppConfig.ARTISTS_API, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    listArtist.addAll(JSONParser.parse(response, Artist.class, false));
+                    // TODO: Use map instead of list
+                    listArtist.addAll(JSONParser.parse(response, Artist.class));
                 } catch (Exception jsonException) {
                     jsonException.printStackTrace();
                 }
 
                 // refreshing recycler view
                 artistCardAdapter.notifyDataSetChanged();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                handleVolleyErrorMessage(volleyError);
+            }
+        });
+
+        RequestSingleton.getInstance(view.getContext()).addToRequestQueue(artistRequest);
+    }
+    private void getSongData() {
+        StringRequest songRequest = new StringRequest(Request.Method.GET, AppConfig.SONGS_API, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    listSong.addAll(SongService.parseWithArtists(response, listArtist));
+                } catch (Exception jsonException) {
+                    jsonException.printStackTrace();
+                }
+
+                listSong.size();
+                // refreshing recycler view
+                songListAdapter.notifyDataSetChanged();
 
                 // stop animating Shimmer and hide the layout
                 shimmerViewContainer.stopShimmer();
@@ -206,8 +242,7 @@ public class OnlineMusicsFragment extends Fragment {
             }
         });
 
-        RequestSingleton.getInstance(view.getContext()).addToRequestQueue(albumRequest);
-        RequestSingleton.getInstance(view.getContext()).addToRequestQueue(artistRequest);
+        RequestSingleton.getInstance(view.getContext()).addToRequestQueue(songRequest);
     }
     private void handleVolleyErrorMessage(VolleyError volleyError) {
         // TODO: Messages need to be changed accordingly

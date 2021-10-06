@@ -2,9 +2,11 @@ package com.javateam.muzik.entity;
 
 import com.google.gson.annotations.SerializedName;
 import com.javateam.muzik.config.AppConfig;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class Album {
+public class Album implements Serializable {
     @SerializedName("id")
     private Long id;
     @SerializedName("name")
