@@ -1,6 +1,7 @@
 package com.javateam.muzik.entity;
 
 import com.google.gson.annotations.SerializedName;
+import com.javateam.muzik.R;
 import com.javateam.muzik.config.AppConfig;
 
 import java.io.Serializable;
@@ -34,17 +35,19 @@ public class Song implements Serializable {
         return AppConfig.SERVER_URL + imgUrl;
     }
 
-    public String getAuthorsName() {
+    public String getArtistsName() {
         StringBuilder sb = new StringBuilder("");
         if (artists != null) {
             for (Artist artist : artists) {
-                sb.append(", " + artist.getName());
+                if (artist != null) {
+                    sb.append(", " + artist.getName());
+                }
             }
         }
         if (sb.length() > 0) {
             return sb.substring(1).toString();
         } else {
-            return "";
+            return "Nghệ sĩ không xác định";
         }
     }
 
@@ -56,6 +59,9 @@ public class Song implements Serializable {
         this.artists = artists;
     }
 
+    public String getSongUrl() {
+        return AppConfig.SERVER_URL + songUrl;
+    }
     @Override
     public String toString() {
         return "Song{" +
@@ -67,4 +73,5 @@ public class Song implements Serializable {
                 ", selfLink='" + selfLink + '\'' +
                 '}';
     }
+
 }
