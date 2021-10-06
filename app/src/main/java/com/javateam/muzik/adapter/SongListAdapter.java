@@ -1,6 +1,7 @@
 package com.javateam.muzik.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.javateam.muzik.PlayActivity;
 import com.javateam.muzik.R;
 import com.javateam.muzik.entity.Song;
 import com.javateam.muzik.listener.ItemClickListener;
@@ -38,7 +40,7 @@ public class SongListAdapter extends RecyclerView.Adapter<ListViewHolder> {
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
         final Song song = listSong.get(position);
         holder.name.setText(song.getName());
-        holder.subtitle.setText(song.getAuthorsName());
+        holder.subtitle.setText(song.getArtistsName());
 
         Glide.with(context)
                 .load(song.getImgUrl())
@@ -50,15 +52,9 @@ public class SongListAdapter extends RecyclerView.Adapter<ListViewHolder> {
                 if (isLongClick) {
                     Toast.makeText(context, "Long click:" + listSong.get(position).toString(), Toast.LENGTH_SHORT).show();
                 } else {
-////                    Intent intent = new Intent(context, MusicPlayerActivity.class);
-//                    Intent intent = new Intent(context, ExoPlayerTestActivity.class);
-//                    intent.putExtra("listSong", (Serializable) listSong);
-//                    Log.e("SongListAdapter", listSong.size() + "");
-//                    intent.putExtra("songUrl", listSong.get(position).getSongUrl());
-//                    intent.putExtra("songName", listSong.get(position).getName());
-//                    intent.putExtra("position", position);
-//                    context.startActivity(intent);
-                    Toast.makeText(context, "Click: " + listSong.get(position).toString(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, PlayActivity.class);
+                    intent.putExtra("playing_song", listSong.get(position));
+                    context.startActivity(intent);
                 }
             }
         });

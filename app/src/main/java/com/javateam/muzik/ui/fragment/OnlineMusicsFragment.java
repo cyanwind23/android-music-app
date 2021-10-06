@@ -158,15 +158,8 @@ public class OnlineMusicsFragment extends Fragment {
         songListTitle = (TextView) view.findViewById(R.id.tv_rcv_song_header);
         songListTitle.setText(R.string.title_rcv_song);
 
-        // Fetch API and display
-        getOnlineData();
-    }
-    private void getOnlineData() {
-
+        // Fetch API and display - get album first then get Artist, Song step by step to prevent null data
         getAlbumData();
-        getArtistData();
-        getSongData();
-
     }
 
     private void getAlbumData() {
@@ -176,6 +169,9 @@ public class OnlineMusicsFragment extends Fragment {
 
                 try {
                     listAlbum.addAll(JSONParser.parse(response, Album.class));
+
+                    // Callback to get Artist
+                    getArtistData();
                 } catch (JSONException jsonException) {
                     jsonException.printStackTrace();
                 }
@@ -201,6 +197,9 @@ public class OnlineMusicsFragment extends Fragment {
                 try {
                     // TODO: Use map instead of list
                     listArtist.addAll(JSONParser.parse(response, Artist.class));
+
+                    //Callback to get Song
+                    getSongData();
                 } catch (Exception jsonException) {
                     jsonException.printStackTrace();
                 }
@@ -222,6 +221,8 @@ public class OnlineMusicsFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 try {
+                    // now all relationship data ready for song
+                    // TODO: need to parse data with full relationship
                     listSong.addAll(SongService.parseWithArtists(response, listArtist));
                 } catch (Exception jsonException) {
                     jsonException.printStackTrace();
@@ -255,8 +256,6 @@ public class OnlineMusicsFragment extends Fragment {
             message = "Cannot connect to Internet...Please check your connection!";
         } else if (volleyError instanceof ParseError) {
             message = "Parsing error! Please try again after some time!!";
-        } else if (volleyError instanceof NoConnectionError) {
-            message = "Cannot connect to Internet...Please check your connection!";
         } else if (volleyError instanceof TimeoutError) {
             message = "Connection TimeOut! Please check your internet connection.";
         }
