@@ -41,7 +41,8 @@ public class SongListAdapter extends RecyclerView.Adapter<ListViewHolder> {
         final Song song = listSong.get(position);
         holder.name.setText(song.getName());
         holder.subtitle.setText(song.getArtistsName());
-
+        holder.name.setSelected(true);
+        holder.subtitle.setSelected(true);
         Glide.with(context)
                 .load(song.getImgUrl())
                 .into(holder.thumbnail);

@@ -14,4 +14,8 @@
 
     <!-- Error message -->
     <string name="no_artist">Nghệ sĩ không xác định</string>
+    <string name="card_thumbnail">card thumnail</string>
+    <string name="default_title">Title</string>
+    <string name="default_subtitle">Subtitle</string>
+    <string name="time_default">00:00</string>
 </resources>

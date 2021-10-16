@@ -9,7 +9,7 @@
         android:id="@+id/list_thumbnail_placeholder"
         android:layout_width="@dimen/list_item_thumbnail"
         android:layout_height="@dimen/list_item_thumbnail"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:scaleType="centerCrop"
         android:background="@color/grey"/>
 
@@ -19,7 +19,7 @@
         android:layout_height="@dimen/h3_height"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_toRightOf="@id/list_thumbnail_placeholder"
+        android:layout_toEndOf="@id/list_thumbnail_placeholder"
         android:background="@color/grey"/>
 
     <View
@@ -27,6 +27,6 @@
         android:layout_width="150dp"
         android:layout_height="@dimen/h4_height"
         android:layout_below="@id/list_name_placeholder"
-        android:layout_toRightOf="@id/list_thumbnail_placeholder"
+        android:layout_toEndOf="@id/list_thumbnail_placeholder"
         android:background="@color/grey"/>
 </RelativeLayout>
