@@ -5,6 +5,7 @@ import com.javateam.muzik.R;
 import com.javateam.muzik.config.AppConfig;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Song implements Serializable {
@@ -26,6 +27,12 @@ public class Song implements Serializable {
     private List<Artist> artists;
     private List<Category> categories;
     private List<Playlist> playlists;
+
+    public Song() {
+        artists = new ArrayList<>();
+        categories = new ArrayList<>();
+        playlists = new ArrayList<>();
+    }
 
     public String getName() {
         return name;
@@ -49,6 +56,30 @@ public class Song implements Serializable {
         } else {
             return "Nghệ sĩ không xác định";
         }
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public List<Artist> getArtists() {
+        return artists;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public List<Playlist> getPlaylists() {
+        return playlists;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public String getSelfLink() {

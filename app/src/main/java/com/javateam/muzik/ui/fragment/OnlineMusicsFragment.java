@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,6 +117,10 @@ public class OnlineMusicsFragment extends Fragment {
 //        textView = (TextView) view.findViewById(R.id.tv_online_musics);
         shimmerViewContainer = (ShimmerFrameLayout) view.findViewById(R.id.shimmer_online_music);
 
+        Bundle bundle = getArguments();
+        listAlbum = (List<Album>) bundle.getSerializable("list_album");
+        listArtist = (List<Artist>) bundle.getSerializable("list_artist");
+        listSong = (List<Song>) bundle.getSerializable("list_song");
         prepareDataList();
         return view;
     }
@@ -124,7 +129,6 @@ public class OnlineMusicsFragment extends Fragment {
     private void prepareDataList() {
         // For Album RCV
         recyclerViewAlbum = (RecyclerView) view.findViewById(R.id.rcv_album);
-        listAlbum = new ArrayList<>();
 
         recyclerViewAlbum.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         recyclerViewAlbum.setItemAnimator(new DefaultItemAnimator());
@@ -136,7 +140,7 @@ public class OnlineMusicsFragment extends Fragment {
 
         // For Artist RCV
         recyclerViewArtist = (RecyclerView) view.findViewById(R.id.rcv_artist);
-        listArtist = new ArrayList<>();
+//        listArtist = new ArrayList<>();
 
         recyclerViewArtist.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         recyclerViewArtist.setItemAnimator(new DefaultItemAnimator());
@@ -148,7 +152,7 @@ public class OnlineMusicsFragment extends Fragment {
 
         // For Song RCV
         recyclerViewSong = (RecyclerView) view.findViewById(R.id.rcv_song);
-        listSong = new ArrayList<>();
+//        listSong = new ArrayList<>();
 
         recyclerViewSong.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerViewSong.setItemAnimator(new DefaultItemAnimator());
@@ -158,37 +162,45 @@ public class OnlineMusicsFragment extends Fragment {
         songListTitle = (TextView) view.findViewById(R.id.tv_rcv_song_header);
         songListTitle.setText(R.string.title_rcv_song);
 
+        // stop animating Shimmer and hide the layout
+        if (listSong != null && listArtist != null && listAlbum != null) {
+            shimmerViewContainer.stopShimmer();
+            shimmerViewContainer.setVisibility(View.GONE);
+        }
+
         // Fetch API and display - get album first then get Artist, Song step by step to prevent null data
-        getAlbumData();
+//        getAlbumData();
+//        getArtistData();
     }
 
-    private void getAlbumData() {
-        StringRequest albumRequest = new StringRequest(Request.Method.GET, AppConfig.ALBUMS_API, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                try {
-                    listAlbum.addAll(JSONParser.parse(response, Album.class));
-
-                    // Callback to get Artist
-                    getArtistData();
-                } catch (JSONException jsonException) {
-                    jsonException.printStackTrace();
-                }
-
-                // refreshing recycler view
-                albumCardAdapter.notifyDataSetChanged();
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                handleVolleyErrorMessage(volleyError);
-            }
-        });
-
-        RequestSingleton.getInstance(view.getContext()).addToRequestQueue(albumRequest);
-    }
+//    private void getAlbumData() {
+//        StringRequest albumRequest = new StringRequest(Request.Method.GET, AppConfig.ALBUMS_API, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//
+//                try {
+//                    listAlbum.addAll(JSONParser.parse(response, Album.class));
+//
+//                    // Callback to get Artist
+//                    getArtistData();
+//                } catch (JSONException jsonException) {
+//                    jsonException.printStackTrace();
+//                }
+//
+//                // refreshing recycler view
+//                albumCardAdapter.notifyDataSetChanged();
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError volleyError) {
+//                handleVolleyErrorMessage(volleyError);
+//            }
+//        });
+//
+//        RequestSingleton.getInstance(view.getContext()).addToRequestQueue(albumRequest);
+//
+//    }
 
     private void getArtistData() {
         StringRequest artistRequest = new StringRequest(Request.Method.GET, AppConfig.ARTISTS_API, new Response.Listener<String>() {
