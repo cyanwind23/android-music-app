@@ -38,6 +38,7 @@ public class AlbumCardAdapter extends RecyclerView.Adapter<CardViewHolder> {
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
         final Album album = listAlbum.get(position);
         holder.name.setText(album.getName());
+        holder.name.setSelected(true);
 //        holder.songUrl.setText(song.getSongUrl().substring(0, 50));
 
         Glide.with(context)
