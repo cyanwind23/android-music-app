@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import com.javateam.muzik.config.AppConfig;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Album implements Serializable {
@@ -20,12 +21,20 @@ public class Album implements Serializable {
 
     private List<Song> songs;
 
+    public Album() {
+        songs = new ArrayList<>();
+    }
+
     public String getName() {
         return name;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getSelfLink() {

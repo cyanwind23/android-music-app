@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import com.javateam.muzik.config.AppConfig;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,10 @@ public class Artist implements Serializable {
     // Relationships
     private List<Song> songs;
 
+    public Artist() {
+        songs = new ArrayList<>();
+    }
+
     public Long getId() {
         return id;
     }
@@ -42,6 +47,14 @@ public class Artist implements Serializable {
 
     public String getImgUrl() {
         return AppConfig.SERVER_URL + imgUrl;
+    }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 
     @Override

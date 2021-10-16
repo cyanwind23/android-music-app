@@ -3,24 +3,59 @@ package com.javateam.muzik;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.javateam.muzik.adapter.JSONParser;
+import com.javateam.muzik.entity.Album;
+import com.javateam.muzik.entity.Artist;
+import com.javateam.muzik.entity.Category;
+import com.javateam.muzik.entity.Song;
+import com.javateam.muzik.service.SongService;
 import com.javateam.muzik.ui.fragment.AlbumsFragment;
 import com.javateam.muzik.ui.fragment.ArtistsFragment;
 import com.javateam.muzik.ui.fragment.OnlineMusicsFragment;
 import com.javateam.muzik.ui.fragment.PlaylistsFragment;
 import com.javateam.muzik.ui.fragment.PrivateMusicsFragment;
 
+import org.json.JSONException;
+
+import java.io.Serializable;
+import java.util.List;
+
 public class Home extends AppCompatActivity {
-    BottomNavigationBar bottomNavigationBar;
+    private BottomNavigationBar bottomNavigationBar;
+    private List<Album> listAlbum;
+    private List<Artist> listArtist;
+    private List<Category> listCategory;
+    private List<Song> listSong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Get data
+        Intent intent = getIntent();
+        try {
+            listAlbum = JSONParser.parse(intent.getStringExtra("json_album"), Album.class);
+            listArtist = JSONParser.parse(intent.getStringExtra("json_artist"), Artist.class);
+            listCategory = JSONParser.parse(intent.getStringExtra("json_category"), Category.class);
+            String listSongString = intent.getStringExtra("json_song");
+            listSong = SongService.parseFull(listSongString, listArtist, listAlbum, listCategory);
+        } catch (JSONException jsonException) {
+            jsonException.printStackTrace();
+        }
+
+/*
+        For debug
+        listSong.size();
+        listArtist.size();
+        listAlbum.size();
+        listCategory.size();
+*/
         initBottomNavigation();
 
     }
@@ -36,11 +71,24 @@ public class Home extends AppCompatActivity {
                 .addItem(new BottomNavigationItem(R.drawable.ic_artists, R.string.title_artists))
                 .setFirstSelectedPosition(2)
                 .initialise();
-        loadFragment(new OnlineMusicsFragment());
+
+        // prepare first fragment
+        Fragment fragment = new OnlineMusicsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("list_album", (Serializable) listAlbum);
+        bundle.putSerializable("list_artist", (Serializable) listArtist);
+        bundle.putSerializable("list_song", (Serializable) listSong);
+        fragment.setArguments(bundle);
+        loadFragment(fragment);
+
         bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position) {
                 Fragment fragment = null;
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("list_album", (Serializable) listAlbum);
+                bundle.putSerializable("list_artist", (Serializable) listArtist);
+                bundle.putSerializable("list_song", (Serializable) listSong);
                 switch (position) {
                     case 0: fragment = new PrivateMusicsFragment(); break;
                     case 1: fragment = new PlaylistsFragment(); break;
@@ -48,6 +96,7 @@ public class Home extends AppCompatActivity {
                     case 4: fragment = new ArtistsFragment(); break;
                     default: fragment = new OnlineMusicsFragment();
                 }
+                fragment.setArguments(bundle);
                 loadFragment(fragment);
             }
 

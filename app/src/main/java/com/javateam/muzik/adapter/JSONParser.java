@@ -14,6 +14,9 @@ import java.util.Map;
 public class JSONParser {
 
     public static <T> List<T> parse(String jsonString, Class<T> type) throws JSONException {
+        if (jsonString == null) {
+            return null;
+        }
         Gson gson = new Gson();
         JSONArray jsonArray = new JSONObject(jsonString).getJSONArray("data");
 
