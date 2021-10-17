@@ -3,12 +3,22 @@ package com.javateam.muzik.ui.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.javateam.muzik.R;
+import com.javateam.muzik.adapter.AlbumListAdapter;
+import com.javateam.muzik.entity.Album;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +35,9 @@ public class AlbumsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private View view;
+    private ShimmerFrameLayout shimmerViewContainer;
 
     public AlbumsFragment() {
         // Required empty public constructor
@@ -61,6 +74,31 @@ public class AlbumsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_albums, container, false);
+        view = inflater.inflate(R.layout.fragment_albums, container, false);
+
+        shimmerViewContainer = view.findViewById(R.id.shimmer_album);
+        prepareData();
+        return view;
+    }
+
+    private void prepareData() {
+
+        RecyclerView recyclerViewAlbum = view.findViewById(R.id.rcv_album);
+        Bundle bundle = getArguments();
+        List<Album> listAlbum = (List<Album>) bundle.getSerializable("list_album");
+
+        recyclerViewAlbum.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        recyclerViewAlbum.setItemAnimator(new DefaultItemAnimator());
+        AlbumListAdapter albumListAdapter = new AlbumListAdapter(view.getContext(), listAlbum);
+        recyclerViewAlbum.setAdapter(albumListAdapter);
+
+        TextView albumListTitle = view.findViewById(R.id.tv_rcv_album_header);
+        albumListTitle.setText(R.string.title_album_fragment);
+
+        // TODO: handle shimmer when invalid listAlbum data - some error occurred
+        new Handler().postDelayed(() -> {
+            shimmerViewContainer.stopShimmer();
+            shimmerViewContainer.setVisibility(View.GONE);
+        }, 2000);
     }
 }
