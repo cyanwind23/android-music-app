@@ -96,9 +96,9 @@ public class AlbumsFragment extends Fragment {
         albumListTitle.setText(R.string.title_album_fragment);
 
         // TODO: handle shimmer when invalid listAlbum data - some error occurred
-        new Handler().postDelayed(() -> {
+        if (listAlbum != null) {
             shimmerViewContainer.stopShimmer();
             shimmerViewContainer.setVisibility(View.GONE);
-        }, 2000);
+        }
     }
 }
