@@ -3,12 +3,22 @@ package com.javateam.muzik.ui.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.javateam.muzik.R;
+import com.javateam.muzik.adapter.ArtistCardAdapter;
+import com.javateam.muzik.entity.Artist;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +35,14 @@ public class ArtistsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private View view;
+    private ShimmerFrameLayout shimmerViewContainer;
+
+    private List<Artist> listArtist;
+    private TextView artistListTitle;
+    private RecyclerView recyclerViewArtist;
+    private ArtistCardAdapter artistCardAdapter;
 
     public ArtistsFragment() {
         // Required empty public constructor
@@ -61,6 +79,31 @@ public class ArtistsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_artists, container, false);
+        view = inflater.inflate(R.layout.fragment_artists, container, false);
+
+        shimmerViewContainer = view.findViewById(R.id.shimmer_artist);
+        prepareData();
+        return view;
+    }
+
+    private void prepareData() {
+
+        recyclerViewArtist = view.findViewById(R.id.rcv_artist);
+        Bundle bundle = getArguments();
+        listArtist = (List<Artist>) bundle.getSerializable("list_artist");
+
+        recyclerViewArtist.setLayoutManager(new GridLayoutManager(view.getContext(), 3));
+        recyclerViewArtist.setItemAnimator(new DefaultItemAnimator());
+        artistCardAdapter = new ArtistCardAdapter(view.getContext(), listArtist);
+        recyclerViewArtist.setAdapter(artistCardAdapter);
+
+        artistListTitle = view.findViewById(R.id.tv_rcv_artist_header);
+        artistListTitle.setText(R.string.title_artist_fragment);
+
+        // TODO: handle shimmer when invalid listArtist data - some error occurred
+        new Handler().postDelayed(() -> {
+            shimmerViewContainer.stopShimmer();
+            shimmerViewContainer.setVisibility(View.GONE);
+        }, 5000);
     }
 }
