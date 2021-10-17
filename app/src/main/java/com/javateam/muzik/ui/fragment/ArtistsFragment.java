@@ -101,9 +101,9 @@ public class ArtistsFragment extends Fragment {
         artistListTitle.setText(R.string.title_artist_fragment);
 
         // TODO: handle shimmer when invalid listArtist data - some error occurred
-        new Handler().postDelayed(() -> {
+        if (listArtist != null) {
             shimmerViewContainer.stopShimmer();
             shimmerViewContainer.setVisibility(View.GONE);
-        }, 5000);
+        }
     }
 }
