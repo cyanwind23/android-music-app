@@ -11,6 +11,7 @@
     <string name="title_rcv_album">Album nổi bật</string>
     <string name="title_rcv_artist">Nghệ sĩ nổi bật</string>
     <string name="title_rcv_song">Dành cho bạn</string>
+    <string name="title_artist_fragment">Danh sách nghệ sĩ</string>
 
     <!-- Error message -->
     <string name="no_artist">Nghệ sĩ không xác định</string>
