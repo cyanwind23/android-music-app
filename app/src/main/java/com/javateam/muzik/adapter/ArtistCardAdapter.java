@@ -1,6 +1,7 @@
 package com.javateam.muzik.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.javateam.muzik.R;
+import com.javateam.muzik.ThumbnailListActivity;
 import com.javateam.muzik.entity.Artist;
 import com.javateam.muzik.listener.ItemClickListener;
 
@@ -51,15 +53,11 @@ public class ArtistCardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                 if (isLongClick) {
                     Toast.makeText(context, "Long click:" + listArtist.get(position).toString(), Toast.LENGTH_SHORT).show();
                 } else {
-////                    Intent intent = new Intent(context, MusicPlayerActivity.class);
-//                    Intent intent = new Intent(context, ExoPlayerTestActivity.class);
-//                    intent.putExtra("listArtist", (Serializable) listArtist);
-//                    Log.e("ArtistCardAdapter", listArtist.size() + "");
-//                    intent.putExtra("songUrl", listArtist.get(position).getSongUrl());
-//                    intent.putExtra("songName", listArtist.get(position).getName());
-//                    intent.putExtra("position", position);
-//                    context.startActivity(intent);
-                    Toast.makeText(context, "Click: " + listArtist.get(position).toString(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, ThumbnailListActivity.class);
+                    intent.putExtra("type", "artist");
+                    intent.putExtra("artist", listArtist.get(position));
+                    context.startActivity(intent);
+//                    Toast.makeText(context, "Click: " + listArtist.get(position).toString(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -11,6 +11,7 @@
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2203125" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.2203125" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_online_music.xml" value="0.2203125" />
+        <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_online_musics.xml" value="0.13778501628664494" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_pause_btn.xml" value="0.2203125" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_playlist.xml" value="0.2203125" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_private_music.xml" value="0.2203125" />
@@ -19,9 +20,10 @@
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/activity_main2.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/activity_play.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/activity_splash.xml" value="0.10364583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/activity_thumbnail_list.xml" value="0.18" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/custom_exoplayer_layout.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/custom_exoplayer_playout.xml" value="0.22" />
-        <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/fragment_albums.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/fragment_albums.xml" value="0.12" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/fragment_artists.xml" value="0.15" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/fragment_dashboard.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
@@ -30,6 +32,8 @@
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/fragment_playlist.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/fragment_private_music.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/fragment_private_musics.xml" value="0.12894736842105264" />
+        <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/fragment_thumbnail_list.xml" value="0.12894736842105264" />
+        <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/fragment_thumbnail_list_detail.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/list_item.xml" value="0.5" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/list_item_layout.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/list_item_placeholder_layout.xml" value="0.5169628432956381" />

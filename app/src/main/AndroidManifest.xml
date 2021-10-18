@@ -12,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Muzik">
         <activity
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:name=".ThumbnailListActivity"
+            android:exported="true" />
+        <activity
             android:name=".SplashActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

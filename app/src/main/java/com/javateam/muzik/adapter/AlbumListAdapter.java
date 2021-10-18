@@ -1,6 +1,7 @@
 package com.javateam.muzik.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.javateam.muzik.R;
+import com.javateam.muzik.ThumbnailListActivity;
 import com.javateam.muzik.entity.Album;
 
 import java.util.List;
@@ -49,10 +51,11 @@ public class AlbumListAdapter extends RecyclerView.Adapter<ListViewHolder> {
             if (isLongClick) {
                 Toast.makeText(context, "Long click:" + listAlbum.get(position1).toString(), Toast.LENGTH_SHORT).show();
             } else {
-//                    Intent intent = new Intent(context, PlayActivity.class);
-//                    intent.putExtra("playing_song", listAlbum.get(position));
-//                    context.startActivity(intent);
-                Toast.makeText(context, "Click:" + listAlbum.get(position1).toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, ThumbnailListActivity.class);
+                intent.putExtra("type", "album");
+                intent.putExtra("album", listAlbum.get(position));
+                context.startActivity(intent);
+//                Toast.makeText(context, "Click:" + listAlbum.get(position1).toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }
