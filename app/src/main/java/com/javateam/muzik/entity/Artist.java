@@ -57,6 +57,10 @@ public class Artist implements Serializable {
         this.songs = songs;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         return "Artist{" +

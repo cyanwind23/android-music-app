@@ -57,6 +57,10 @@ public class Album implements Serializable {
         return AppConfig.SERVER_URL + imgUrl;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         return "Album{" +
