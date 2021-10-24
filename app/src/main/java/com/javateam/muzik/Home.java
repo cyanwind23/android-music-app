@@ -1,10 +1,10 @@
 package com.javateam.muzik;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -132,4 +132,5 @@ public class Home extends AppCompatActivity {
         super.onDestroy();
         bottomMusicController.destroy();
     }
+
 }
