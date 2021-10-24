@@ -82,72 +82,96 @@
                 android:layout_marginEnd="10dp"/>
         </RelativeLayout>
     </RelativeLayout>
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/play_control_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp">
-        <ImageView
-            android:id="@+id/exo_play"
-            android:layout_width="@dimen/control_btn_size"
-            android:layout_height="@dimen/control_btn_size"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/ic_play_btn" />
-        <ImageView
-            android:id="@+id/exo_pause"
-            android:layout_width="@dimen/control_btn_size"
-            android:layout_height="@dimen/control_btn_size"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/ic_pause_btn" />
-        <ImageView
-            android:id="@+id/exo_next"
-            android:layout_marginTop="10dp"
-            android:layout_toStartOf="@id/exo_ffwd"
-            android:background="@drawable/ic_next_btn"
-            android:layout_width="@dimen/control_btn_size_s"
-            android:layout_height="@dimen/control_btn_size_s"/>
-        <ImageView
-            android:id="@+id/exo_prev"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/exo_rew"
-            android:background="@drawable/ic_prev_btn"
-            android:layout_width="@dimen/control_btn_size_s"
-            android:layout_height="@dimen/control_btn_size_s"/>
+        android:layout_alignParentBottom="true">
 
         <ImageView
-            android:id="@+id/exo_ffwd"
+            android:id="@+id/player_shuffle"
             android:layout_marginTop="10dp"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/ic_fast_forward_btn"
-            android:layout_width="@dimen/control_btn_size_s"
-            android:layout_height="@dimen/control_btn_size_s"/>
-        <ImageView
-            android:id="@+id/exo_rew"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
             android:layout_alignParentStart="true"
-            android:background="@drawable/ic_fast_rewind_btn"
+            android:background="@drawable/ic_shuffle_disable"
             android:layout_width="@dimen/control_btn_size_s"
-            android:layout_height="@dimen/control_btn_size_s"/>
-        <RelativeLayout
+            android:layout_height="@dimen/control_btn_size_s"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/player_shuffle"
+            app:layout_constraintEnd_toStartOf="@id/player_repeat"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp">
+            <ImageView
+                android:id="@+id/exo_prev"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_prev_btn"
+                android:layout_width="@dimen/control_btn_size_s"
+                android:layout_height="@dimen/control_btn_size_s"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+            <ImageView
+                android:id="@+id/exo_play"
+                android:layout_width="@dimen/control_btn_size"
+                android:layout_height="@dimen/control_btn_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/exo_prev"
+                app:layout_constraintEnd_toStartOf="@id/exo_next"
+                android:background="@drawable/ic_play_btn"/>
+            <ImageView
+                android:id="@+id/exo_pause"
+                android:layout_width="@dimen/control_btn_size"
+                android:layout_height="@dimen/control_btn_size"
+                android:layout_centerHorizontal="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/exo_prev"
+                app:layout_constraintEnd_toStartOf="@id/exo_next"
+                android:background="@drawable/ic_pause_btn"/>
+            <ImageView
+                android:id="@+id/exo_next"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_next_btn"
+                android:layout_width="@dimen/control_btn_size_s"
+                android:layout_height="@dimen/control_btn_size_s"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/player_repeat"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_repeat_disable"
+            android:layout_width="@dimen/control_btn_size_s"
+            android:layout_height="@dimen/control_btn_size_s"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <!--            <com.gauravk.audiovisualizer.visualizer.BlastVisualizer-->
-            <!--                xmlns:custom="http://schemas.android.com/apk/res-auto"-->
-            <!--                android:id="@+id/blast"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="70dp"-->
-            <!--                android:layout_alignParentBottom="true"-->
+    <!--        <RelativeLayout-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content">-->
 
-            <!--                custom:avDensity="0.5"-->
-            <!--                custom:avType="outline"-->
-            <!--                custom:avWidth="4dp"-->
-            <!--                custom:avColor="#FF362E"-->
-            <!--                custom:avSpeed="normal"/>-->
-        </RelativeLayout>
 
-    </RelativeLayout>
+    <!--                        <com.gauravk.audiovisualizer.visualizer.BlastVisualizer-->
+    <!--                            xmlns:custom="http://schemas.android.com/apk/res-auto"-->
+    <!--                            android:id="@+id/blast"-->
+    <!--                            android:layout_width="match_parent"-->
+    <!--                            android:layout_height="70dp"-->
+    <!--                            android:layout_alignParentBottom="true"-->
+
+    <!--                            custom:avDensity="0.5"-->
+    <!--                            custom:avType="outline"-->
+    <!--                            custom:avWidth="4dp"-->
+    <!--                            custom:avColor="#FF362E"-->
+    <!--                            custom:avSpeed="normal"/>-->
+    <!--        </RelativeLayout>-->
 </RelativeLayout>

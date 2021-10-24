@@ -34,6 +34,10 @@ public class Song implements Serializable {
         playlists = new ArrayList<>();
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -52,7 +56,7 @@ public class Song implements Serializable {
             }
         }
         if (sb.length() > 0) {
-            return sb.substring(1).toString();
+            return sb.substring(2).toString();
         } else {
             return "Nghệ sĩ không xác định";
         }

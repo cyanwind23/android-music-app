@@ -15,6 +15,7 @@
 
     <!-- Error message -->
     <string name="no_artist">Nghệ sĩ không xác định</string>
+    <string name="no_song_available">Không có bài hát nào để phát</string>
     <string name="card_thumbnail">card thumnail</string>
     <string name="default_title">Title</string>
     <string name="default_subtitle">Subtitle</string>

@@ -52,6 +52,7 @@ dependencies {
 //    implementation 'com.xamoom.android:morpheus:0.5.2' - Parse JSON API
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'com.tbuonomo:dotsindicator:4.2'
+    implementation "androidx.media:media:1.4.3"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
