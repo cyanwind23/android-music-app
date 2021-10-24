@@ -1,70 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ThumbnailListActivity">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <RelativeLayout
-            android:id="@+id/tl_rl1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:textAlignment="center">
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/tl_viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                android:id="@+id/dots_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:dotsColor="@color/grey"
-                app:dotsCornerRadius="8dp"
-                app:dotsSize="10dp"
-                app:dotsSpacing="4dp"
-                app:dotsWidthFactor="2.5"
-                app:selectedDotColor="@color/white"
-                app:progressMode="true"
-                android:layout_below="@+id/tl_viewpager"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp"
-                />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phát ngẫu nhiên"
-                android:layout_below="@+id/dots_indicator"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_marginTop="20dp"
-            android:layout_below="@id/tl_rl1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <TextView
+            <RelativeLayout
+                android:id="@+id/tl_rl1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Danh sách bài hát"
-                android:id="@+id/tl_list_song_title"
-                android:layout_marginStart="10dp"
-                android:textSize="@dimen/h2"
-                android:textStyle="bold"/>
+                android:orientation="vertical"
+                android:textAlignment="center">
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/tl_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_below="@+id/tl_list_song_title"
-                android:id="@+id/tl_rcv_song"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="15dp"/>
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/dots_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:dotsColor="@color/grey"
+                    app:dotsCornerRadius="8dp"
+                    app:dotsSize="10dp"
+                    app:dotsSpacing="4dp"
+                    app:dotsWidthFactor="2.5"
+                    app:selectedDotColor="@color/white"
+                    app:progressMode="true"
+                    android:layout_below="@+id/tl_viewpager"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <Button
+                    android:id="@+id/tl_rand_play_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phát ngẫu nhiên"
+                    android:layout_below="@+id/dots_indicator"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/tl_rl1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Danh sách bài hát"
+                    android:id="@+id/tl_list_song_title"
+                    android:layout_marginStart="10dp"
+                    android:textSize="@dimen/h2"
+                    android:textStyle="bold"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_below="@+id/tl_list_song_title"
+                    android:id="@+id/tl_rcv_song"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="15dp"/>
+            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
-
-</ScrollView>
+    </ScrollView>
+    <include
+        android:id="@+id/tl_mcl"
+        layout="@layout/music_controller_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

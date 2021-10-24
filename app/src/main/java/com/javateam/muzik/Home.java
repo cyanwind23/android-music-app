@@ -19,6 +19,7 @@ import com.javateam.muzik.ui.fragment.ArtistsFragment;
 import com.javateam.muzik.ui.fragment.OnlineMusicsFragment;
 import com.javateam.muzik.ui.fragment.PlaylistsFragment;
 import com.javateam.muzik.ui.fragment.PrivateMusicsFragment;
+import com.javateam.muzik.ui.layout.BottomMusicController;
 
 import org.json.JSONException;
 
@@ -26,11 +27,14 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Home extends AppCompatActivity {
+
+    private final String TAG = "Home";
     private BottomNavigationBar bottomNavigationBar;
     private List<Album> listAlbum;
     private List<Artist> listArtist;
     private List<Category> listCategory;
     private List<Song> listSong;
+    private BottomMusicController bottomMusicController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +61,11 @@ public class Home extends AppCompatActivity {
         listCategory.size();
 */
         initBottomNavigation();
+        initBottomMusicController();
+    }
 
+    private void initBottomMusicController() {
+        bottomMusicController = new BottomMusicController(this, TAG, findViewById(R.id.home_mcl));
     }
 
     private void initBottomNavigation() {
@@ -117,5 +125,11 @@ public class Home extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.frame_layout, fragment)
                 .commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        bottomMusicController.destroy();
     }
 }

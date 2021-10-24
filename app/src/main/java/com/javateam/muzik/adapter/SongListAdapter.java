@@ -47,16 +47,14 @@ public class SongListAdapter extends RecyclerView.Adapter<ListViewHolder> {
                 .load(song.getImgUrl())
                 .into(holder.thumbnail);
 
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, int position, boolean isLongClick) {
-                if (isLongClick) {
-                    Toast.makeText(context, "Long click:" + listSong.get(position).toString(), Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(context, PlayActivity.class);
-                    intent.putExtra("playing_song", listSong.get(position));
-                    context.startActivity(intent);
-                }
+        holder.setItemClickListener((view, position1, isLongClick) -> {
+            if (isLongClick) {
+                Toast.makeText(context, "Long click:" + listSong.get(position1).toString(), Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(context, PlayActivity.class);
+                intent.putExtra("type", "song");
+                intent.putExtra("song", listSong.get(position1));
+                context.startActivity(intent);
             }
         });
     }
