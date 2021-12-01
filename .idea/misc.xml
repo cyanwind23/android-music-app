@@ -6,6 +6,7 @@
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2203125" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_albums.xml" value="0.2203125" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_artists.xml" value="0.10989583333333333" />
+        <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_back.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_fast_forward_btn.xml" value="0.1125" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_fast_rewind_btn.xml" value="0.1125" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2203125" />
@@ -17,10 +18,12 @@
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_private_music.xml" value="0.2203125" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_repeat.xml" value="0.13914473684210527" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/ic_repeat_disable.xml" value="0.13914473684210527" />
+        <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/drawable/rounded_button.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/activity_home.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/activity_main2.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/activity_play.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/activity_search.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/activity_splash.xml" value="0.10364583333333334" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/activity_thumbnail_list.xml" value="0.18" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/custom_exoplayer_layout.xml" value="0.1" />
@@ -44,6 +47,8 @@
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/square_item_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/layout/square_item_placeholder_layout.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/menu/search_menu.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/Muzik/app/src/main/res/xml/searchable.xml" value="0.1" />
         <entry key="..\:/Users/CongHuanNguyen/android-music-app/app/src/main/res/layout/activity_home.xml" value="0.136" />
         <entry key="..\:/Users/CongHuanNguyen/android-music-app/app/src/main/res/layout/activity_search.xml" value="0.1234375" />
         <entry key="..\:/Users/CongHuanNguyen/android-music-app/app/src/main/res/layout/fragment_artists.xml" value="0.1" />
