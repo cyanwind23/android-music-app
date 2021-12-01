@@ -1,9 +1,18 @@
 package com.javateam.muzik;
 
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -35,6 +44,12 @@ public class Home extends AppCompatActivity {
     private List<Category> listCategory;
     private List<Song> listSong;
     private BottomMusicController bottomMusicController;
+
+    /** Intent keys **/
+    public static final String IK_LIST_SONG = "list_song";
+    public static final String IK_LIST_ALBUM = "list_album";
+    public static final String IK_LIST_ARTIST = "list_artist";
+    public static final String IK_LIST_CATEGORY = "list_category";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,4 +148,27 @@ public class Home extends AppCompatActivity {
         bottomMusicController.destroy();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_actions_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_search) {
+            Intent intent = new Intent(this, SearchActivity.class);
+            Bundle bundle = new Bundle();
+
+            bundle.putSerializable(IK_LIST_SONG, (Serializable) listSong);
+            bundle.putSerializable(IK_LIST_ALBUM, (Serializable) listAlbum);
+            bundle.putSerializable(IK_LIST_ARTIST, (Serializable) listArtist);
+            bundle.putSerializable(IK_LIST_CATEGORY, (Serializable) listCategory);
+            intent.putExtras(bundle);
+
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

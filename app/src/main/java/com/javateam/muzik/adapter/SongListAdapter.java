@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,17 +17,19 @@ import com.bumptech.glide.Glide;
 import com.javateam.muzik.PlayActivity;
 import com.javateam.muzik.R;
 import com.javateam.muzik.entity.Song;
-import com.javateam.muzik.listener.ItemClickListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class SongListAdapter extends RecyclerView.Adapter<ListViewHolder> {
-    private Context context;
+public class SongListAdapter extends RecyclerView.Adapter<ListViewHolder> implements Filterable {
+    private final Context context;
     private List<Song> listSong;
+    private final List<Song> listSongFull;
 
     public SongListAdapter(Context context, List<Song> listSong) {
         this.context = context;
         this.listSong = listSong;
+        this.listSongFull = listSong;
     }
 
     @NonNull
@@ -65,5 +70,36 @@ public class SongListAdapter extends RecyclerView.Adapter<ListViewHolder> {
             return listSong.size();
         }
         return 0;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String keyword = charSequence.toString();
+                List<Song> list = new ArrayList<>();
+
+                if (!keyword.isEmpty()) {
+                    for (Song song : listSongFull) {
+                        if (song.getName().toLowerCase().contains(keyword.toLowerCase())) {
+                            list.add(song);
+                        }
+                    }
+                } else {
+                    list = listSongFull;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = list;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                listSong = (List<Song>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }
