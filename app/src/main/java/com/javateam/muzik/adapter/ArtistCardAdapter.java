@@ -14,13 +14,12 @@ import com.bumptech.glide.Glide;
 import com.javateam.muzik.R;
 import com.javateam.muzik.ThumbnailListActivity;
 import com.javateam.muzik.entity.Artist;
-import com.javateam.muzik.listener.ItemClickListener;
 
 import java.util.List;
 
 public class ArtistCardAdapter extends RecyclerView.Adapter<CardViewHolder> {
-    private Context context;
-    private List<Artist> listArtist;
+    private final Context context;
+    private final List<Artist> listArtist;
 
     public ArtistCardAdapter(Context context, List<Artist> listArtist) {
         this.context = context;
@@ -41,24 +40,19 @@ public class ArtistCardAdapter extends RecyclerView.Adapter<CardViewHolder> {
         final Artist artist = listArtist.get(position);
         holder.name.setText(artist.getName());
         holder.name.setSelected(true);
-//        holder.songUrl.setText(song.getSongUrl().substring(0, 50));
 
         Glide.with(context)
                 .load(artist.getImgUrl())
                 .into(holder.thumbnail);
 
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, int position, boolean isLongClick) {
-                if (isLongClick) {
-                    Toast.makeText(context, "Long click:" + listArtist.get(position).toString(), Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(context, ThumbnailListActivity.class);
-                    intent.putExtra("type", "artist");
-                    intent.putExtra("artist", listArtist.get(position));
-                    context.startActivity(intent);
-//                    Toast.makeText(context, "Click: " + listArtist.get(position).toString(), Toast.LENGTH_SHORT).show();
-                }
+        holder.setItemClickListener((view, position1, isLongClick) -> {
+            if (isLongClick) {
+                Toast.makeText(context, "Long click:" + listArtist.get(position1).toString(), Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(context, ThumbnailListActivity.class);
+                intent.putExtra(ThumbnailListActivity.IK_TYPE, ThumbnailListActivity.IK_TYPE_ARTIST);
+                intent.putExtra(ThumbnailListActivity.IK_TYPE_ARTIST, listArtist.get(position1));
+                context.startActivity(intent);
             }
         });
     }

@@ -58,10 +58,9 @@ public class ArtistListAdapter extends RecyclerView.Adapter<ListViewHolder> impl
                 Toast.makeText(context, "Long click:" + listArtist.get(position1).toString(), Toast.LENGTH_SHORT).show();
             } else {
                 Intent intent = new Intent(context, ThumbnailListActivity.class);
-                intent.putExtra("type", "artist");
-                intent.putExtra("artist", listArtist.get(position));
+                intent.putExtra(ThumbnailListActivity.IK_TYPE, ThumbnailListActivity.IK_TYPE_ARTIST);
+                intent.putExtra(ThumbnailListActivity.IK_TYPE_ARTIST, listArtist.get(position1));
                 context.startActivity(intent);
-//                Toast.makeText(context, "Click:" + listArtist.get(position1).toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -58,8 +58,8 @@ public class AlbumListAdapter extends RecyclerView.Adapter<ListViewHolder> imple
                 Toast.makeText(context, "Long click:" + listAlbum.get(position1).toString(), Toast.LENGTH_SHORT).show();
             } else {
                 Intent intent = new Intent(context, ThumbnailListActivity.class);
-                intent.putExtra("type", "album");
-                intent.putExtra("album", listAlbum.get(position));
+                intent.putExtra(ThumbnailListActivity.IK_TYPE, ThumbnailListActivity.IK_TYPE_ALBUM);
+                intent.putExtra(ThumbnailListActivity.IK_TYPE_ALBUM, listAlbum.get(position));
                 context.startActivity(intent);
 //                Toast.makeText(context, "Click:" + listAlbum.get(position1).toString(), Toast.LENGTH_SHORT).show();
             }

@@ -11,7 +11,6 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
@@ -27,7 +26,13 @@ public class SplashActivity extends AppCompatActivity {
     private String songString = null;
     private String categoryString = null;
 
-    VolleyError generalError = null;
+    private VolleyError generalError = null;
+
+    /** Intent keys **/
+    public static final String IK_JSON_ALBUM = "json_album";
+    public static final String IK_JSON_ARTIST = "json_artist";
+    public static final String IK_JSON_CATEGORY = "json_category";
+    public static final String IK_JSON_SONG = "json_song";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +54,10 @@ public class SplashActivity extends AppCompatActivity {
                 handleVolleyErrorMessage(generalError);
             }
 
-            intent.putExtra("json_album", albumString);
-            intent.putExtra("json_artist", artistString);
-            intent.putExtra("json_category", categoryString);
-            intent.putExtra("json_song", songString);
+            intent.putExtra(IK_JSON_ALBUM, albumString);
+            intent.putExtra(IK_JSON_ARTIST, artistString);
+            intent.putExtra(IK_JSON_CATEGORY, categoryString);
+            intent.putExtra(IK_JSON_SONG, songString);
 
             startActivity(intent);
             finish();

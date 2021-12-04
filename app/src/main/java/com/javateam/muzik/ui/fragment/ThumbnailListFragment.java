@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.javateam.muzik.R;
+import com.javateam.muzik.ThumbnailListActivity;
 import com.javateam.muzik.entity.Album;
 import com.javateam.muzik.entity.Artist;
 
@@ -86,13 +87,13 @@ public class ThumbnailListFragment extends Fragment {
         name = view.findViewById(R.id.tlf_name);
         subtitle = view.findViewById(R.id.tlf_subtitle);
 
-        if (bundle.getString("type").equals("album")) {
-            Album album = (Album) bundle.getSerializable("album");
+        if (bundle.getString(ThumbnailListActivity.IK_TYPE).equals(ThumbnailListActivity.IK_TYPE_ALBUM)) {
+            Album album = (Album) bundle.getSerializable(ThumbnailListActivity.IK_TYPE_ALBUM);
             name.setText(album.getName());
             subtitle.setText(album.getSongs().size() + " bài hát");
             loadImg(album.getImgUrl());
         } else {
-            Artist artist = (Artist) bundle.getSerializable("artist");
+            Artist artist = (Artist) bundle.getSerializable(ThumbnailListActivity.IK_TYPE_ARTIST);
             name.setText(artist.getName());
             subtitle.setText(artist.getSongs().size() + " bài hát");
             loadImg(artist.getImgUrl());

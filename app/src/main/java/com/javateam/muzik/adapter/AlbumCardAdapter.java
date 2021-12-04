@@ -14,13 +14,12 @@ import com.bumptech.glide.Glide;
 import com.javateam.muzik.R;
 import com.javateam.muzik.ThumbnailListActivity;
 import com.javateam.muzik.entity.Album;
-import com.javateam.muzik.listener.ItemClickListener;
 
 import java.util.List;
 
 public class AlbumCardAdapter extends RecyclerView.Adapter<CardViewHolder> {
-    private Context context;
-    private List<Album> listAlbum;
+    private final Context context;
+    private final List<Album> listAlbum;
 
     public AlbumCardAdapter(Context context, List<Album> listAlbum) {
         this.context = context;
@@ -41,24 +40,19 @@ public class AlbumCardAdapter extends RecyclerView.Adapter<CardViewHolder> {
         final Album album = listAlbum.get(position);
         holder.name.setText(album.getName());
         holder.name.setSelected(true);
-//        holder.songUrl.setText(song.getSongUrl().substring(0, 50));
 
         Glide.with(context)
                 .load(album.getImgUrl())
                 .into(holder.thumbnail);
 
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, int position, boolean isLongClick) {
-                if (isLongClick) {
-                    Toast.makeText(context, "Long click:" + listAlbum.get(position).toString(), Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(context, ThumbnailListActivity.class);
-                    intent.putExtra("type", "album");
-                    intent.putExtra("album", listAlbum.get(position));
-                    context.startActivity(intent);
-//                    Toast.makeText(context, "Click: " + listAlbum.get(position).toString(), Toast.LENGTH_SHORT).show();
-                }
+        holder.setItemClickListener((view, position1, isLongClick) -> {
+            if (isLongClick) {
+                Toast.makeText(context, "Long click:" + listAlbum.get(position1).toString(), Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(context, ThumbnailListActivity.class);
+                intent.putExtra(ThumbnailListActivity.IK_TYPE, ThumbnailListActivity.IK_TYPE_ALBUM);
+                intent.putExtra(ThumbnailListActivity.IK_TYPE_ALBUM, listAlbum.get(position1));
+                context.startActivity(intent);
             }
         });
     }

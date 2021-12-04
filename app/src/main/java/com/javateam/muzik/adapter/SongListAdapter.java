@@ -57,8 +57,8 @@ public class SongListAdapter extends RecyclerView.Adapter<ListViewHolder> implem
                 Toast.makeText(context, "Long click:" + listSong.get(position1).toString(), Toast.LENGTH_SHORT).show();
             } else {
                 Intent intent = new Intent(context, PlayActivity.class);
-                intent.putExtra("type", "song");
-                intent.putExtra("song", listSong.get(position1));
+                intent.putExtra(PlayActivity.IK_TYPE, PlayActivity.IK_TYPE_SONG);
+                intent.putExtra(PlayActivity.IK_TYPE_SONG, listSong.get(position1));
                 context.startActivity(intent);
             }
         });
