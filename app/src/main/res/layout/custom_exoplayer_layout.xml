@@ -56,10 +56,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="20dp"
-            app:unplayed_color="#FF0000"
-            app:buffered_color="#00BCD4"
-            app:played_color="#FFFF00"/>
+            android:layout_margin="10dp"
+            app:unplayed_color="@color/grey"
+            app:buffered_color="@color/teal_200"
+            app:played_color="@color/purple_500"
+            app:bar_height="2dp"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,21 +88,24 @@
         android:id="@+id/play_control_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp">
 
         <ImageView
             android:id="@+id/player_shuffle"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:layout_alignParentStart="true"
-            android:background="@drawable/ic_shuffle_disable"
+            android:background="@drawable/ic_btn_shuffle_off_512"
             android:layout_width="@dimen/control_btn_size_s"
             android:layout_height="@dimen/control_btn_size_s"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/play_controller"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/play_controller"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/player_shuffle"
@@ -110,7 +115,7 @@
             <ImageView
                 android:id="@+id/exo_prev"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/ic_prev_btn"
+                android:background="@drawable/ic_btn_prev_512"
                 android:layout_width="@dimen/control_btn_size_s"
                 android:layout_height="@dimen/control_btn_size_s"
                 app:layout_constraintTop_toTopOf="parent"
@@ -122,7 +127,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/exo_prev"
                 app:layout_constraintEnd_toStartOf="@id/exo_next"
-                android:background="@drawable/ic_play_btn"/>
+                android:background="@drawable/ic_btn_play_512"/>
             <ImageView
                 android:id="@+id/exo_pause"
                 android:layout_width="@dimen/control_btn_size"
@@ -131,11 +136,11 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/exo_prev"
                 app:layout_constraintEnd_toStartOf="@id/exo_next"
-                android:background="@drawable/ic_pause_btn"/>
+                android:background="@drawable/ic_btn_pause_512"/>
             <ImageView
                 android:id="@+id/exo_next"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/ic_next_btn"
+                android:background="@drawable/ic_btn_next_512"
                 android:layout_width="@dimen/control_btn_size_s"
                 android:layout_height="@dimen/control_btn_size_s"
                 app:layout_constraintTop_toTopOf="parent"
@@ -148,11 +153,12 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/ic_repeat_disable"
+            android:background="@drawable/ic_btn_loop_off_512"
             android:layout_width="@dimen/control_btn_size_s"
             android:layout_height="@dimen/control_btn_size_s"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/play_controller"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -22,6 +22,7 @@ import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.ui.DefaultTimeBar;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.javateam.muzik.entity.Album;
 import com.javateam.muzik.entity.Artist;
@@ -119,13 +120,13 @@ public class PlayActivity extends AppCompatActivity {
             int repeatMode = simpleExoPlayer.getRepeatMode();
             if (repeatMode == Player.REPEAT_MODE_OFF) {
                 simpleExoPlayer.setRepeatMode(Player.REPEAT_MODE_ALL);
-                repeatBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_repeat, getTheme()));
+                repeatBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_btn_loop_on_512, getTheme()));
             } else if (repeatMode == Player.REPEAT_MODE_ALL) {
                 simpleExoPlayer.setRepeatMode(Player.REPEAT_MODE_ONE);
-                repeatBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_repeat_one, getTheme()));
+                repeatBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_btn_loop_one_512, getTheme()));
             } else {
                 simpleExoPlayer.setRepeatMode(Player.REPEAT_MODE_OFF);
-                repeatBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_repeat_disable, getTheme()));
+                repeatBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_btn_loop_off_512, getTheme()));
             }
         });
 
@@ -133,9 +134,9 @@ public class PlayActivity extends AppCompatActivity {
         shuffleBtn.setOnClickListener(view -> {
             boolean shuffleEnable =  simpleExoPlayer.getShuffleModeEnabled();
             if (!shuffleEnable) {
-                shuffleBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_shuffle, getTheme()));
+                shuffleBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_btn_shuffle_on_512, getTheme()));
             } else {
-                shuffleBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_shuffle_disable, getTheme()));
+                shuffleBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_btn_shuffle_off_512, getTheme()));
             }
             simpleExoPlayer.setShuffleModeEnabled(!shuffleEnable);
         });
@@ -223,11 +224,11 @@ public class PlayActivity extends AppCompatActivity {
         if (shuffleRequest) {
             Collections.shuffle(listItem, new Random(System.currentTimeMillis()));
             simpleExoPlayer.setShuffleModeEnabled(true);
-            shuffleBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_shuffle, getTheme()));
+            shuffleBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_btn_shuffle_on_512, getTheme()));
         } else {
             // TODO: may be deprecated
             simpleExoPlayer.setShuffleModeEnabled(false);
-            shuffleBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_shuffle_disable, getTheme()));
+            shuffleBtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_btn_shuffle_off_512, getTheme()));
         }
     }
     private void updateUi(@NonNull Song song) {
