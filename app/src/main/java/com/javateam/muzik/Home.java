@@ -98,13 +98,17 @@ public class Home extends AppCompatActivity {
                 R.string.title_artists
         ));
         BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
+        bottomNavigationBar
+                .setActiveColor("#000033")
+                .setInActiveColor("#00CCFF")
+                .setBarBackgroundColor("#FFFFFF");
 
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_private_musics, fragmentTitles.get(0))) // 0
-                .addItem(new BottomNavigationItem(R.drawable.ic_playlists, fragmentTitles.get(1))) // 1
-                .addItem(new BottomNavigationItem(R.drawable.ic_online_musics, R.string.title_online_musics)) // 2
-                .addItem(new BottomNavigationItem(R.drawable.ic_albums, fragmentTitles.get(3))) // 3
-                .addItem(new BottomNavigationItem(R.drawable.ic_artists, fragmentTitles.get(4))) // 4
+                .addItem(new BottomNavigationItem(R.drawable.ic_private_music_v2_64, fragmentTitles.get(0))) // 0
+                .addItem(new BottomNavigationItem(R.drawable.ic_playlist_v2_64, fragmentTitles.get(1))) // 1
+                .addItem(new BottomNavigationItem(R.drawable.ic_online_music_v2_64, R.string.title_online_musics)) // 2
+                .addItem(new BottomNavigationItem(R.drawable.ic_album_v2_64, fragmentTitles.get(3))) // 3
+                .addItem(new BottomNavigationItem(R.drawable.ic_artist_v2_64, fragmentTitles.get(4))) // 4
                 .setFirstSelectedPosition(2)
                 .initialise();
 
