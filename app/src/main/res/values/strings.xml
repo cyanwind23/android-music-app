@@ -2,6 +2,7 @@
     <string name="app_name">Muzik</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <!-- Bottom Navigation title -->
     <string name="title_private_musics">Cá nhân</string>
     <string name="title_playlists">Danh sách phát</string>
@@ -16,6 +17,8 @@
     <!-- Error message -->
     <string name="no_artist">Nghệ sĩ không xác định</string>
     <string name="no_song_available">Không có bài hát nào để phát</string>
+
+    <!-- Strings -->
     <string name="card_thumbnail">card thumnail</string>
     <string name="default_title">Title</string>
     <string name="default_subtitle">Subtitle</string>
@@ -23,4 +26,5 @@
     <string name="title_album_fragment">Danh sách album</string>
     <string name="action_search">Search</string>
     <string name="search_hint">Tìm kiếm tên bài hát, nghệ sĩ, album, thể loại</string>
+
 </resources>

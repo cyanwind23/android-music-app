@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.javateam.muzik.Home;
 import com.javateam.muzik.R;
 import com.javateam.muzik.adapter.ArtistCardAdapter;
 import com.javateam.muzik.entity.Artist;
@@ -90,7 +91,7 @@ public class ArtistsFragment extends Fragment {
 
         recyclerViewArtist = view.findViewById(R.id.rcv_artist);
         Bundle bundle = getArguments();
-        listArtist = (List<Artist>) bundle.getSerializable("list_artist");
+        listArtist = (List<Artist>) bundle.getSerializable(Home.IK_LIST_ARTIST);
 
         recyclerViewArtist.setLayoutManager(new GridLayoutManager(view.getContext(), 3));
         recyclerViewArtist.setItemAnimator(new DefaultItemAnimator());

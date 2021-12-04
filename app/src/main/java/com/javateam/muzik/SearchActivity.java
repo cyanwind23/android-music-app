@@ -3,26 +3,17 @@ package com.javateam.muzik;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.javateam.muzik.adapter.AlbumListAdapter;
@@ -32,7 +23,6 @@ import com.javateam.muzik.entity.Album;
 import com.javateam.muzik.entity.Artist;
 import com.javateam.muzik.entity.Song;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,9 +65,9 @@ public class SearchActivity extends AppCompatActivity {
 
         // UI mapping
         mapBtn = new HashMap<>();
-        mapBtn.put(SONG_CRITERION, (Button) findViewById(R.id.song_criterion));
-        mapBtn.put(ARTIST_CRITERION, (Button) findViewById(R.id.artist_criterion));
-        mapBtn.put(ALBUM_CRITERION, (Button) findViewById(R.id.album_criterion));
+        mapBtn.put(SONG_CRITERION, findViewById(R.id.song_criterion));
+        mapBtn.put(ARTIST_CRITERION, findViewById(R.id.artist_criterion));
+        mapBtn.put(ALBUM_CRITERION, findViewById(R.id.album_criterion));
         
         // Default search with song
         criterion = SONG_CRITERION;

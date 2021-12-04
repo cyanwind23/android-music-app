@@ -1,18 +1,13 @@
 package com.javateam.muzik;
 
-import android.app.SearchManager;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -33,12 +28,13 @@ import com.javateam.muzik.ui.layout.BottomMusicController;
 import org.json.JSONException;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Home extends AppCompatActivity {
 
-    private final String TAG = "Home";
-    private BottomNavigationBar bottomNavigationBar;
+    public static final String TAG = "Home";
     private List<Album> listAlbum;
     private List<Artist> listArtist;
     private List<Category> listCategory;
@@ -50,6 +46,9 @@ public class Home extends AppCompatActivity {
     public static final String IK_LIST_ALBUM = "list_album";
     public static final String IK_LIST_ARTIST = "list_artist";
     public static final String IK_LIST_CATEGORY = "list_category";
+
+    /** Bundle to transfer **/
+    private Bundle bundleToTransfer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +74,13 @@ public class Home extends AppCompatActivity {
         listAlbum.size();
         listCategory.size();
 */
+        // Create bundle
+        bundleToTransfer = new Bundle();
+        bundleToTransfer.putSerializable(IK_LIST_SONG, (Serializable) listSong);
+        bundleToTransfer.putSerializable(IK_LIST_ALBUM, (Serializable) listAlbum);
+        bundleToTransfer.putSerializable(IK_LIST_ARTIST, (Serializable) listArtist);
+        bundleToTransfer.putSerializable(IK_LIST_CATEGORY, (Serializable) listCategory);
+
         initBottomNavigation();
         initBottomMusicController();
     }
@@ -84,42 +90,47 @@ public class Home extends AppCompatActivity {
     }
 
     private void initBottomNavigation() {
-        bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
+        ArrayList<Integer> fragmentTitles = new ArrayList<>(Arrays.asList(
+                R.string.title_private_musics,
+                R.string.title_playlists,
+                R.string.app_name,
+                R.string.title_albums,
+                R.string.title_artists
+        ));
+        BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
 
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_private_musics, R.string.title_private_musics))
-                .addItem(new BottomNavigationItem(R.drawable.ic_playlists, R.string.title_playlists))
-                .addItem(new BottomNavigationItem(R.drawable.ic_online_musics, R.string.title_online_musics))
-                .addItem(new BottomNavigationItem(R.drawable.ic_albums, R.string.title_albums))
-                .addItem(new BottomNavigationItem(R.drawable.ic_artists, R.string.title_artists))
+                .addItem(new BottomNavigationItem(R.drawable.ic_private_musics, fragmentTitles.get(0))) // 0
+                .addItem(new BottomNavigationItem(R.drawable.ic_playlists, fragmentTitles.get(1))) // 1
+                .addItem(new BottomNavigationItem(R.drawable.ic_online_musics, R.string.title_online_musics)) // 2
+                .addItem(new BottomNavigationItem(R.drawable.ic_albums, fragmentTitles.get(3))) // 3
+                .addItem(new BottomNavigationItem(R.drawable.ic_artists, fragmentTitles.get(4))) // 4
                 .setFirstSelectedPosition(2)
                 .initialise();
 
         // prepare first fragment
         Fragment fragment = new OnlineMusicsFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("list_album", (Serializable) listAlbum);
-        bundle.putSerializable("list_artist", (Serializable) listArtist);
-        bundle.putSerializable("list_song", (Serializable) listSong);
-        fragment.setArguments(bundle);
+        fragment.setArguments(bundleToTransfer);
         loadFragment(fragment);
 
         bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position) {
-                Fragment fragment = null;
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("list_album", (Serializable) listAlbum);
-                bundle.putSerializable("list_artist", (Serializable) listArtist);
-                bundle.putSerializable("list_song", (Serializable) listSong);
+                Fragment fragment;
                 switch (position) {
                     case 0: fragment = new PrivateMusicsFragment(); break;
                     case 1: fragment = new PlaylistsFragment(); break;
                     case 3: fragment = new AlbumsFragment(); break;
                     case 4: fragment = new ArtistsFragment(); break;
-                    default: fragment = new OnlineMusicsFragment();
+                    default: // default 2
+                        fragment = new OnlineMusicsFragment();
                 }
-                fragment.setArguments(bundle);
+
+                ActionBar actionBar = getSupportActionBar();
+                if (actionBar != null) {
+                    actionBar.setTitle(fragmentTitles.get(position));
+                }
+                fragment.setArguments(bundleToTransfer);
                 loadFragment(fragment);
             }
 
@@ -158,13 +169,7 @@ public class Home extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_search) {
             Intent intent = new Intent(this, SearchActivity.class);
-            Bundle bundle = new Bundle();
-
-            bundle.putSerializable(IK_LIST_SONG, (Serializable) listSong);
-            bundle.putSerializable(IK_LIST_ALBUM, (Serializable) listAlbum);
-            bundle.putSerializable(IK_LIST_ARTIST, (Serializable) listArtist);
-            bundle.putSerializable(IK_LIST_CATEGORY, (Serializable) listCategory);
-            intent.putExtras(bundle);
+            intent.putExtras(bundleToTransfer);
 
             startActivity(intent);
             return true;

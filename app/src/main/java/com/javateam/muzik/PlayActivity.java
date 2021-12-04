@@ -40,6 +40,12 @@ public class PlayActivity extends AppCompatActivity {
     private final String TAG = "PlayActivity";
     public static final String KEY_REQUEST_SHUFFLE = "SHUFFLE_REQUEST";
 
+    /** Warning: These keys must be the same as ThumbnailListActivity's IKs **/
+    public static final String IK_TYPE = "type";
+    public static final String IK_TYPE_SONG = "song";
+    public static final String IK_TYPE_ALBUM = "album";
+    public static final String IK_TYPE_ARTIST = "artist";
+
     private Intent intent;
     private TextView songName;
     private TextView artistNames;
@@ -175,27 +181,30 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * @apiNote : Album and Artist come from ThumbnailListActivity so IK must be the same in both this and that activity
+     */
     private void prepareDataToPlay() {
         // Prepare song data here
         intent = getIntent();
         playList = new HashMap<>();
 
         // load to playlist - Map type
-        String type = intent.getStringExtra("type");
-        if (type.equals("album")) {
-            Album album = (Album) intent.getSerializableExtra("album");
+        String type = intent.getStringExtra(IK_TYPE);
+        if (type.equals(IK_TYPE_ALBUM)) {
+            Album album = (Album) intent.getSerializableExtra(IK_TYPE_ALBUM);
             List<Song> listSong = album.getSongs();
             for (Song song : listSong) {
                 playList.put(song.getId().toString(), song);
             }
-        } else if (type.equals("artist")) {
-            Artist artist = (Artist) intent.getSerializableExtra("artist");
+        } else if (type.equals(IK_TYPE_ARTIST)) {
+            Artist artist = (Artist) intent.getSerializableExtra(IK_TYPE_ARTIST);
             List<Song> listSong = artist.getSongs();
             for (Song song : listSong) {
                 playList.put(song.getId().toString(), song);
             }
         } else { // single song
-            Song song = (Song) intent.getSerializableExtra("song");
+            Song song = (Song) intent.getSerializableExtra(IK_TYPE_SONG);
             playList.put(song.getId().toString(), song);
         }
 
@@ -232,7 +241,7 @@ public class PlayActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        Log.e(TAG, "Destroy");
+//        Log.e(TAG, "Destroy");
         unbindService(serviceConnection);
         super.onDestroy();
     }

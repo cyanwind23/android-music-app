@@ -5,17 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.bumptech.glide.Glide;
-import com.javateam.muzik.PlayActivity;
 import com.javateam.muzik.R;
 import com.javateam.muzik.entity.Song;
 import com.javateam.muzik.service.PlayerService;
@@ -36,7 +33,7 @@ public class BottomMusicController extends LinearLayout {
     private TextView mclArtistTitle;
     private Context viewContext;
 
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             Bundle bundle = intent.getExtras();
@@ -103,17 +100,11 @@ public class BottomMusicController extends LinearLayout {
     }
 
     private void setupUI() {
-        mclPlayPauseBtn.setOnClickListener(view -> {
-            sendActionToService(PlayerService.ACTION_TOGGLE_PLAY_PAUSE);
-        });
+        mclPlayPauseBtn.setOnClickListener(view -> sendActionToService(PlayerService.ACTION_TOGGLE_PLAY_PAUSE));
 
-        mclPrevBtn.setOnClickListener(view -> {
-            sendActionToService(PlayerService.ACTION_PREV);
-        });
+        mclPrevBtn.setOnClickListener(view -> sendActionToService(PlayerService.ACTION_PREV));
 
-        mclNextBtn.setOnClickListener(view -> {
-            sendActionToService(PlayerService.ACTION_NEXT);
-        });
+        mclNextBtn.setOnClickListener(view -> sendActionToService(PlayerService.ACTION_NEXT));
 
         mclSongTitle.setSelected(true);
         mclArtistTitle.setSelected(true);

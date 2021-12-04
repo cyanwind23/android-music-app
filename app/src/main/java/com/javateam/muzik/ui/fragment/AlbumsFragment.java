@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.javateam.muzik.Home;
 import com.javateam.muzik.R;
 import com.javateam.muzik.adapter.AlbumListAdapter;
 import com.javateam.muzik.entity.Album;
@@ -85,7 +86,7 @@ public class AlbumsFragment extends Fragment {
 
         RecyclerView recyclerViewAlbum = view.findViewById(R.id.rcv_album);
         Bundle bundle = getArguments();
-        List<Album> listAlbum = (List<Album>) bundle.getSerializable("list_album");
+        List<Album> listAlbum = (List<Album>) bundle.getSerializable(Home.IK_LIST_ALBUM);
 
         recyclerViewAlbum.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerViewAlbum.setItemAnimator(new DefaultItemAnimator());
